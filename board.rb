@@ -21,9 +21,14 @@ class Board
         self[pos] == '_'
     end 
 
-    def place_mark(pos, mark)
+    def place_mark(position, mark)
+        pos = position[0].to_i, position[1].to_i
         unless !valid?(pos) || !empty?(pos)
             self[pos] = mark
+        else 
+            p "Please enter a valid position"
+            new_pos = gets.chomp.split(" ")
+            place_mark(new_pos, mark)
         end
     end
 

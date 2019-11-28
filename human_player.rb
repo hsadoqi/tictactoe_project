@@ -4,7 +4,7 @@ class HumanPlayer
         @mark_value = mark_value
     end
 
-    def mark_value 
+    def mark
         @mark_value 
     end 
 
