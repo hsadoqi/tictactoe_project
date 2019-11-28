@@ -1,5 +1,4 @@
 class HumanPlayer
-    @@all = []
 
     def initialize(mark_value)
         @mark_value = mark_value
@@ -10,7 +9,7 @@ class HumanPlayer
     end 
 
     def valid?(position)
-        pos = position.split(" ")
+        pos = position.split(" ").map {|i| i.to_i}
 
         if pos.length != 2
             # can also put 'raise' but cli game would be interrupted with a runtime error
@@ -22,17 +21,18 @@ class HumanPlayer
         end
     end 
 
-    def get_position
+    def get_position(positions)
         p "Which row and position in the row would you like to play? Please enter the numbers separated by a space."
 
         pos = valid?(gets.chomp)
 
-        if pos
+        if pos && positions.include?(pos)
             p pos
+        else 
+            p "#{pos} is not a legal position"
+            get_position(positions)
         end
         
-
-
 
     end 
 

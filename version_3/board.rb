@@ -74,5 +74,11 @@ class Board
         @board.flatten.any? {|pos| pos == '_'}
     end
 
+    def legal_positions
+        indices = (0...@board.length).to_a
+        positions = indices.product(indices)
+        positions.select { |pos| empty?(pos) }
+    end
+
 
 end 
