@@ -1,4 +1,5 @@
 class HumanPlayer
+    @@all = []
 
     def initialize(mark_value)
         @mark_value = mark_value

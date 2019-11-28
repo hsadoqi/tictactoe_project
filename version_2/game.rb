@@ -2,23 +2,14 @@ require './board.rb'
 require './human_player.rb'
 class Game 
 
-    def initialize(player_1_mark, player_2_mark)
-        if player_1_mark == player_2_mark
-            raise 'You must have different marks'
-        else 
-            @player_1 = HumanPlayer.new(player_1_mark)
-            @player_2 = HumanPlayer.new(player_2_mark)
-            @current_player = @player_1
-            @board = Board.new
-        end
+    def initialize(board_size, *marks)
+        @players = marks.map {|mark| HumanPlayer.new(mark)}
+        @current_player = @players[0]
+        @board = Board.new(board_size)
     end
 
     def switch_turn 
-        if @current_player == @player_1 
-            @current_player = @player_2
-        else 
-            @current_player = @player_1
-        end
+        @players.rotate!.first
     end 
 
     def play 
